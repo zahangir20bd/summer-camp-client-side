@@ -20,6 +20,7 @@ import banner5 from "../../../assets/banner/banner5.jpg";
 import banner6 from "../../../assets/banner/banner6.jpg";
 import banner7 from "../../../assets/banner/banner7.jpg";
 import banner8 from "../../../assets/banner/banner8.jpg";
+import banner9 from "../../../assets/banner/banner9.jpg";
 
 const Banner = () => {
   return (
@@ -60,7 +61,7 @@ const Banner = () => {
           <img src={banner8} alt="" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src={banner3} alt="" />
+          <img src={banner9} alt="" />
         </SwiperSlide>
       </Swiper>
     </div>
