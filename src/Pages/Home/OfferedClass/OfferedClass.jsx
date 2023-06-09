@@ -4,12 +4,13 @@ import "./OfferedClass.css";
 
 const OfferedClass = () => {
   return (
-    <div className="featuredImage bg-fixed text-white mt-20 bg-cover">
+    <div className="BackgroundImage bg-fixed text-white mt-20 bg-cover">
       <div className="w-full h-full bg-black bg-opacity-50 pt-1">
         <SectionTitle heading="Offered Class"></SectionTitle>
         <div className="md:flex justify-center items-center mt-10 pb-20 px-36">
           <div className="w-2/5">
             <img
+              className="rounded-lg"
               src="https://i.ibb.co/HzF2GgR/tumblr-ms21cu-Ne-Jb1qa0ri9o1-1280.jpg"
               alt=""
             />

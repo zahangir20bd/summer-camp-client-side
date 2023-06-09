@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom";
 import useClasses from "../../../Hooks/useClasses";
 import SectionTitle from "../../../components/SectionTitle";
+import "./PopularInstructors.css";
+import { FaLink } from "react-icons/fa";
 
 const PopularInstructors = () => {
   const [, popularClasses] = useClasses();
@@ -9,12 +12,15 @@ const PopularInstructors = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {popularClasses.map((instructor) => (
           <div key={instructor._id} className="card w-96 bg-base-100 shadow-xl">
-            <figure className="px-10 pt-10">
+            <figure className="imgHover">
               <img
                 src={instructor.instructor_image}
                 alt="Instructor Image"
-                className="rounded-xl"
+                className="rounded-t-xl"
               />
+              <Link className="text-4xl text-white z-10">
+                <FaLink className="ProfileLink" />
+              </Link>
             </figure>
             <div className="card-body items-center text-center">
               <h2 className="card-title">Name: {instructor.instructor_name}</h2>
