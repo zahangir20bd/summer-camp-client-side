@@ -54,7 +54,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <Link to="/login" className="btn">
-          Login
+          Sign In
         </Link>
       </div>
     </div>

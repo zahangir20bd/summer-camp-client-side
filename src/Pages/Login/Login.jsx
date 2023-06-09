@@ -1,6 +1,19 @@
+/* eslint-disable react/no-unescaped-entities */
+import { useState } from "react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Login = () => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  // const [password, setPassword] = useState("");
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
+
+  // const handlePasswordChange = (e) => {
+  //   setPassword(e.target.value);
+  // };
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
       <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">
@@ -19,16 +32,23 @@ const Login = () => {
               className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-black focus:ring-black focus:outline-none focus:ring focus:ring-opacity-40"
             />
           </div>
-          <div className="mb-2">
+          <div className="mb-2 relative">
             <label className="block text-sm font-semibold text-gray-800">
               Password
             </label>
             <input
-              type="password"
+              type={passwordVisible ? "text" : "password"}
               name="password"
               placeholder="Password"
               className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-black focus:ring-black focus:outline-none focus:ring focus:ring-opacity-40"
             />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="absolute right-2 bottom-3 text-lg"
+            >
+              {passwordVisible ? <FaEyeSlash /> : <FaEye />}
+            </button>
           </div>
           <a href="#" className="text-xs text-blue-500 hover:underline">
             Forget Password?
