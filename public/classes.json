@@ -1,0 +1,102 @@
+[
+    {
+        "_id": 1,
+        "class_image": "https://i.ibb.co/KrrVF3C/img1.jpg",
+        "class_name": "Sports Photography",
+        "instructor_name": "John Smith",
+        "instructor_image": "https://i.ibb.co/n1b7rmY/John-Smith.jpg",
+        "total_seats": 30,
+        "available_seats": 18,
+        "price": 150
+    },
+    {
+        "_id": 2,
+        "class_image": "https://i.ibb.co/3N2Y79K/img2.jpg",
+        "class_name": "Motion Photography",
+        "instructor_name": "Emily Johnson",
+        "instructor_image": "https://i.ibb.co/1RDqSc0/Emily-Johnson.jpg",
+        "total_seats": 30,
+        "available_seats": 22,
+        "price": 200
+    },
+    {
+        "_id": 3,
+        "class_image": "https://i.ibb.co/5B0b4Yx/img3.jpg",
+        "class_name": "Wildlife Photography",
+        "instructor_name": "Michael Brown",
+        "instructor_image": "https://i.ibb.co/zrk7C1x/Michael-Brown.jpg",
+        "total_seats": 30,
+        "available_seats": 17,
+        "price": 180
+    },
+    {
+        "_id": 4,
+        "class_image": "https://i.ibb.co/NN0YP74/img4.jpg",
+        "class_name": "Portrait Photography",
+        "instructor_name": "Sarah Davis",
+        "instructor_image": "https://i.ibb.co/v3P4K4k/Sarah-Davis.jpg",
+        "total_seats": 30,
+        "available_seats": 21,
+        "price": 170
+    },
+    {
+        "_id": 5,
+        "class_image": "https://i.ibb.co/6bnNHsT/img5.jpg",
+        "class_name": "Macro Photography",
+        "instructor_name": "Robert Wilson",
+        "instructor_image": "https://i.ibb.co/R6Msm7r/Robert-Wilson.jpg",
+        "total_seats": 30,
+        "available_seats": 15,
+        "price": 220
+    },
+    {
+        "_id": 6,
+        "class_image": "https://i.ibb.co/kXmv83s/img6.jpg",
+        "class_name": "Documentary Photography",
+        "instructor_name": "Jennifer Adams",
+        "instructor_image": "https://i.ibb.co/XWY9N2J/Jennifer-Adams.jpg",
+        "total_seats": 30,
+        "available_seats": 19,
+        "price": 190
+    },
+    {
+        "_id": 7,
+        "class_image": "https://i.ibb.co/LYmxxGC/img7.jpg",
+        "class_name": "Street Photography",
+        "instructor_name": "David Thompson",
+        "instructor_image": "https://i.ibb.co/CzydPTz/David-Thompson.jpg",
+        "total_seats": 30,
+        "available_seats": 13,
+        "price": 160
+    },
+    {
+        "_id": 8,
+        "class_image": "https://i.ibb.co/LkW4hBT/still-life-photography.jpg",
+        "class_name": "Still Life Photography",
+        "instructor_name": "Sophia Martinez",
+        "instructor_image": "https://i.ibb.co/6WrwKTq/Sophia-Martinez.jpg",
+        "total_seats": 30,
+        "available_seats": 18,
+        "price": 210
+    },
+    {
+        "_id": 9,
+        "class_image": "https://i.ibb.co/FmQwwrS/Event-Photography.jpg",
+        "class_name": "Event Photography",
+        "instructor_name": "Daniel Wilson",
+        "instructor_image": "https://i.ibb.co/t2p1f3Y/Daniel-Wilson.jpg",
+        "total_seats": 30,
+        "available_seats": 20,
+        "price": 180
+    },
+    {
+        "_id": 10,
+        "class_image": "https://i.ibb.co/hYCrxKX/Travel-Photography.jpg",
+        "class_name": "Travel Photography",
+        "instructor_name": "Daniel Clark",
+        "instructor_image": "https://i.ibb.co/fpBxjwP/Daniel-Clark.jpg",
+        "total_seats": 30,
+        "available_seats": 16,
+        "price": 200
+    }
+]
