@@ -5,22 +5,29 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
-  // const [password, setPassword] = useState("");
 
+  // Password Show and Hide Button Toggle handler
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  // const handlePasswordChange = (e) => {
-  //   setPassword(e.target.value);
-  // };
+  // Sign In Handler
+  const handleSignIn = (event) => {
+    event.preventDefault();
+    const from = event.target;
+    const email = from.email.value;
+    const password = from.password.value;
+
+    console.log(email, password);
+  };
+
   return (
     <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
       <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">
         <h1 className="text-3xl font-semibold text-center text-black uppercase">
           Sign in
         </h1>
-        <form className="mt-6">
+        <form onSubmit={handleSignIn} className="mt-6">
           <div className="mb-2">
             <label className="block text-sm font-semibold text-gray-800">
               Email
@@ -50,11 +57,17 @@ const Login = () => {
               {passwordVisible ? <FaEyeSlash /> : <FaEye />}
             </button>
           </div>
-          <a href="#" className="text-xs text-blue-500 hover:underline">
-            Forget Password?
-          </a>
+          <p
+            title="TODO Need to Implement"
+            className="text-xs text-blue-500 hover:underline cursor-pointer"
+          >
+            Forget Password? {/*TODO Need To Implemented*/}
+          </p>
           <div className="mt-6">
-            <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform rounded-md  focus:outline-none btn btn-neutral">
+            <button
+              type="submit"
+              className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform rounded-md  focus:outline-none btn btn-neutral"
+            >
               Login
             </button>
           </div>
