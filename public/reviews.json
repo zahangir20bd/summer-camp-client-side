@@ -1,0 +1,37 @@
+[
+    {
+        "_id": "1",
+        "reviewer": "Emily Johnson",
+        "review": "Focus Academy has truly transformed my photography skills! The courses offered are comprehensive and taught by experienced professionals. The instructors are passionate and provide hands-on guidance, which has significantly improved my technique. The online platform is user-friendly and allows for convenient learning at my own pace. I highly recommend Focus Academy to anyone looking to elevate their photography skills!",
+        "rating": 4.9,
+        "reviewer_image": "https://i.ibb.co/1RDqSc0/Emily-Johnson.jpg"
+    },
+    {
+        "_id": "2",
+        "reviewer": "David Thompson",
+        "review": "I am extremely pleased with the courses I took at Focus Academy. The instructors are knowledgeable and patient, and they go the extra mile to ensure that students understand the concepts thoroughly. The course material is well-structured and covers a wide range of topics. The online community and forums provided a great platform for interaction and learning from fellow photography enthusiasts. I am grateful for the skills and confidence I gained through Focus Academy!",
+        "rating": 4.5,
+        "reviewer_image": "https://i.ibb.co/CzydPTz/David-Thompson.jpg"
+    },
+    {
+        "_id": "3",
+        "reviewer": "Sarah Davis",
+        "review": "Focus Academy exceeded my expectations! The instructors are not only skilled photographers but also excellent teachers. They break down complex concepts into easily understandable modules. The practical assignments and feedback sessions helped me improve my composition and editing skills. The affordability of the courses is an added bonus. Focus Academy is the perfect place for aspiring photographers to learn and grow!",
+        "rating": 4.7,
+        "reviewer_image": "https://i.ibb.co/v3P4K4k/Sarah-Davis.jpg"
+    },
+    {
+        "_id": "4",
+        "reviewer": "Michael Brown",
+        "review": "Focus Academy has been a game-changer for my photography journey. The instructors are not only talented but also great mentors. The online platform provides a seamless learning experience with high-quality video lessons and downloadable resources. The flexibility of the courses allowed me to balance learning with my busy schedule. Thanks to Focus Academy, I have seen a tremendous improvement in my photography skills. I highly recommend it to all photography enthusiasts!",
+        "rating": 4.8,
+        "reviewer_image": "https://i.ibb.co/zrk7C1x/Michael-Brown.jpg"
+    },
+    {
+        "_id": "5",
+        "reviewer": "Olivia Clark",
+        "review": "Focus Academy offers exceptional photography courses that cater to all skill levels. The classes are well-structured, and the content is presented in an engaging and informative manner. The instructors are patient and provide constructive feedback that helped me refine my technique. The community aspect of Focus Academy is fantastic, as I was able to connect with fellow photographers and learn from their experiences. I'm grateful for the learning opportunities and inspiration I found at Focus Academy!",
+        "rating": 4.6,
+        "reviewer_image": "https://i.ibb.co/6WrwKTq/Sophia-Martinez.jpg"
+    }
+]

@@ -4,18 +4,18 @@ import "./OfferedClass.css";
 
 const OfferedClass = () => {
   return (
-    <div className="BackgroundImage bg-fixed text-white mt-20 bg-cover">
+    <div className="BackgroundImage bg-fixed text-white mt-32 bg-cover">
       <div className="w-full h-full bg-black bg-opacity-50 pt-1">
         <SectionTitle heading="Offered Class"></SectionTitle>
-        <div className="md:flex justify-center items-center mt-10 pb-20 px-36">
-          <div className="w-2/5">
+        <div className="md:flex justify-center items-center mt-10 pb-20 px-2 md:px-36">
+          <div className="w-full md:w-2/5">
             <img
               className="rounded-lg"
               src="https://i.ibb.co/HzF2GgR/tumblr-ms21cu-Ne-Jb1qa0ri9o1-1280.jpg"
               alt=""
             />
           </div>
-          <div className="md:ms-10 w-3/5">
+          <div className="md:ms-10 w-full md:w-3/5 mt-10 md:mt-0">
             <h4 className="text-lg">We Are Offering 30% Discount on</h4>
             <h2 className="text-2xl uppercase my-3">Wild Life Photography</h2>
             <p className="text-justify">

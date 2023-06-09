@@ -11,7 +11,10 @@ const PopularInstructors = () => {
       <SectionTitle heading="Popular Instructors"></SectionTitle>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {popularClasses.map((instructor) => (
-          <div key={instructor._id} className="card w-96 bg-base-100 shadow-xl">
+          <div
+            key={instructor._id}
+            className="card mx-auto w-96 bg-base-100 shadow-xl"
+          >
             <figure className="imgHover">
               <img
                 src={instructor.instructor_image}
