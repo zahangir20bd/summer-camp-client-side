@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet-async";
 import Banner from "../Banner/Banner";
 import OfferedClass from "../OfferedClass/OfferedClass";
 import PopularClasses from "../PopularClasses/PopularClasses";
@@ -7,12 +8,14 @@ import Reviews from "../Reviews/Reviews";
 const Home = () => {
   return (
     <div>
+      <Helmet>
+        <title>Home | Focus Academy</title>
+      </Helmet>
       <Banner></Banner>
       <PopularClasses></PopularClasses>
       <PopularInstructors></PopularInstructors>
       <OfferedClass></OfferedClass>
       <Reviews></Reviews>
-      <h2>This is Home</h2>
     </div>
   );
 };

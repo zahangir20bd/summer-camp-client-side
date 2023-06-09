@@ -21,9 +21,13 @@ const Reviews = () => {
   // console.log(reviews);
 
   return (
-    <section>
+    <section className="mb-20">
       <SectionTitle heading="Inspiring Reviews"></SectionTitle>
-      <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+      <Swiper
+        navigation={true}
+        modules={[Navigation]}
+        className="mySwiper mt-20"
+      >
         {reviews.map((review) => (
           <SwiperSlide key={review._id}>
             <div className="flex flex-col items-center justify-center gap-5">
