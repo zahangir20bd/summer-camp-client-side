@@ -7,9 +7,7 @@ import { Link } from "react-router-dom";
 const PopularClasses = () => {
   const [, popularClasses] = useClasses();
 
-  //   console.log(classes);
-
-  console.log(popularClasses);
+  // console.log(popularClasses);
 
   const params = {
     slidesPerView: 4,
