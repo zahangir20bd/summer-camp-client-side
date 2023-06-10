@@ -1,0 +1,43 @@
+.imgHover{
+    position: relative;
+    
+}
+.imgHover::before{
+content: "";
+position: absolute;
+left: 0;
+top: 0;
+height: 0%;
+width: 0%;
+background-color: #000000a8;
+transition: .4s all ease-in-out;
+}
+.imgHover::after{
+content: "";
+position: absolute;
+right: 0;
+bottom: 0;
+height: 0%;
+width: 0%;
+background-color: #000000a8;
+transition: .4s all ease-in-out;
+
+}
+.imgHover:hover::after, .imgHover:hover::before{
+    width: 50%;
+    height: 100%;
+}
+
+.imgHover a{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: .4s all ease-in-out;
+
+}
+
+.imgHover:hover a{
+    opacity: 1;
+}

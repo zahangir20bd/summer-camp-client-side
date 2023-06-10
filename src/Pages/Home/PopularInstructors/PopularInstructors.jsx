@@ -3,6 +3,8 @@ import useClasses from "../../../Hooks/useClasses";
 import SectionTitle from "../../../components/SectionTitle";
 import "./PopularInstructors.css";
 import { FaLink } from "react-icons/fa";
+import { Rating } from "@smastrom/react-rating";
+import "@smastrom/react-rating/style.css";
 
 const PopularInstructors = () => {
   const [, popularClasses] = useClasses();
@@ -27,12 +29,16 @@ const PopularInstructors = () => {
             </figure>
             <div className="card-body items-center text-center">
               <h2 className="card-title">Name: {instructor.instructor_name}</h2>
-              <p className="text-lg mb-5">
-                Class Name: {instructor.class_name}
-              </p>
-              <div className="card-actions">
+              <p className="text-lg">Class Name: {instructor.class_name}</p>
+              <Rating
+                className="text-warning my-2"
+                style={{ maxWidth: 120 }}
+                value={instructor.ratings}
+                readOnly
+              />
+              <div className="card-actions mt-5">
                 <button className="btn btn-ghost border-slate-700 border-b-4">
-                  All Classes
+                  See Classes
                 </button>
               </div>
             </div>
