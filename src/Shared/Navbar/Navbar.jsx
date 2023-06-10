@@ -91,7 +91,7 @@ const Navbar = () => {
           >
             {user?.photoURL ? (
               <img
-                className="w-14 h-14 rounded-full border-2 border-gray-400 shadow-sm"
+                className="w-14 h-14 rounded-full border-2 border-gray-400 shadow-lg"
                 src={user?.photoURL}
                 alt="User Image"
               />
@@ -106,7 +106,7 @@ const Navbar = () => {
               onMouseLeave={hide}
               className="absolute z-20 -right-2 top-12  py-2 w-44 bg-slate-100  bg-opacity-50 rounded shadow-lg transition-opacity duration-1000"
             >
-              <h1 className="ps-4 pr-2 py-2 text-lg">{user?.displayName}</h1>
+              <h1 className="ps-4 pr-2 py-2 font-bold">{user?.displayName}</h1>
               <button className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left">
                 View Profile
               </button>

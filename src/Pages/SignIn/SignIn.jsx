@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form";
 const SignIn = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [error, setError] = useState("");
-  const { signIn } = useContext(AuthContext);
+  const { signIn, googleSignIn, gitHubSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -46,6 +46,32 @@ const SignIn = () => {
       })
       .catch((error) => {
         setError(error.message);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        const currentUser = result.user;
+        console.log(currentUser);
+
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleGithubSignIn = () => {
+    gitHubSignIn()
+      .then((result) => {
+        const currentUser = result.user;
+        console.log(currentUser);
+
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -121,6 +147,7 @@ const SignIn = () => {
           <div className="flex mt-4 gap-x-2">
             <button
               type="button"
+              onClick={handleGoogleSignIn}
               className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-black"
             >
               <svg
@@ -132,7 +159,11 @@ const SignIn = () => {
               </svg>{" "}
               <span className="ms-2">Google</span>
             </button>
-            <button className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-black">
+            <button
+              type="button"
+              onClick={handleGithubSignIn}
+              className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-black"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 32 32"

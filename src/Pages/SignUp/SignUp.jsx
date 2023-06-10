@@ -23,7 +23,8 @@ const SignUp = () => {
 
   const from = location.state?.from?.pathname || "/";
 
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser, updateUserProfile, googleSignIn, gitHubSignIn } =
+    useContext(AuthContext);
 
   const password = watch("password");
   const confirmPassword = watch("confirm_password");
@@ -51,6 +52,32 @@ const SignUp = () => {
           console.log(error);
         });
     });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        const currentUser = result.user;
+        console.log(currentUser);
+
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const handleGithubSignIn = () => {
+    gitHubSignIn()
+      .then((result) => {
+        const currentUser = result.user;
+        console.log(currentUser);
+
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const toggleViewPassword = () => {
@@ -246,6 +273,7 @@ const SignUp = () => {
           <div className="flex mt-4 gap-x-2">
             <button
               type="button"
+              onClick={handleGoogleSignIn}
               className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-black"
             >
               <svg
@@ -257,7 +285,11 @@ const SignUp = () => {
               </svg>
               <span className="ms-2">Google</span>
             </button>
-            <button className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-black">
+            <button
+              type="button"
+              onClick={handleGithubSignIn}
+              className="flex items-center justify-center w-full p-2 border border-gray-600 rounded-md focus:ring-2 focus:ring-offset-1 focus:ring-black"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 32 32"
