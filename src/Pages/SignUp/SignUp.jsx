@@ -53,6 +53,9 @@ const SignUp = () => {
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-black focus:ring-black focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
+            {errors.name && (
+              <span className="text-red-500">Name is required.</span>
+            )}
             <div className="mb-2">
               <label className="block text-sm font-semibold text-gray-800">
                 Email*
@@ -65,6 +68,9 @@ const SignUp = () => {
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-black focus:ring-black focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
+            {errors.email && (
+              <span className="text-red-500">Email is required</span>
+            )}
             <div className="mb-2 relative">
               <label className="block text-sm font-semibold text-gray-800">
                 Password*
@@ -72,7 +78,12 @@ const SignUp = () => {
               <input
                 type={viewPassword ? "text" : "password"}
                 name="password"
-                {...register("password", { required: true })}
+                {...register("password", {
+                  required: true,
+                  minLength: 6,
+                  maxLength: 20,
+                  pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                })}
                 placeholder="Password"
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-black focus:ring-black focus:outline-none focus:ring focus:ring-opacity-40"
               />
@@ -84,8 +95,24 @@ const SignUp = () => {
                 {viewPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
-            {errors.password && (
-              <span className="text-red-500">Password is required.</span>
+            {errors.password?.type === "required" && (
+              <span className="text-red-500">Password is required</span>
+            )}
+            {errors.password?.type === "minLength" && (
+              <span className="text-red-500">
+                Use minimum 6 character for password
+              </span>
+            )}
+            {errors.password?.type === "maxLength" && (
+              <span className="text-red-500">
+                Use maximum 20 character for password
+              </span>
+            )}
+            {errors.password?.type === "pattern" && (
+              <span className="text-red-500">
+                Password must have one uppercase, one lowercase, one number and
+                one special character
+              </span>
             )}
             <div className="mb-2 relative">
               <label className="block text-sm font-semibold text-gray-800">
