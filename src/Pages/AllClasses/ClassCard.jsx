@@ -8,11 +8,17 @@ const ClassCard = ({ singleClass }) => {
     price,
   } = singleClass;
 
+  const selectDisabled = available_seats === 0;
+
+  const buttonClasses = `btn btn-ghost border-slate-700 border-b-4 ${
+    selectDisabled ? " cursor-not-allowed" : ""
+  }`;
+
   return (
     <div
       className={`card card-side ${
-        available_seats === 0 ? "bg-red-500" : "bg-base-100"
-      } ${available_seats === 0 && "text-white"} shadow-xl`}
+        available_seats === 0 ? "bg-red-500 text-white" : "bg-base-100"
+      } shadow-xl`}
     >
       <figure>
         <img src={class_image} alt="Movie" />
@@ -28,7 +34,7 @@ const ClassCard = ({ singleClass }) => {
           <p className="text-lg">Course Fee: ${price}</p>
         </div>
         <div className="card-actions items-end justify-end h-full">
-          <button className="btn btn-ghost border-slate-700 border-b-4">
+          <button disabled={selectDisabled} className={buttonClasses}>
             Select
           </button>
         </div>
