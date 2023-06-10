@@ -1,7 +1,27 @@
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
+import { FaUserAlt } from "react-icons/fa";
 
 const Navbar = () => {
+  const [isProfileVisible, setProfileVisible] = useState(false);
+  const { user, signingOut } = useContext(AuthContext);
+
+  const toggleProfileVisibility = () => {
+    setProfileVisible(!isProfileVisible);
+  };
+
+  const handleSignOut = () => {
+    signingOut()
+      .then(() => {
+        //
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   const navMenus = (
     <>
       <li>
@@ -52,11 +72,42 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navMenus}</ul>
       </div>
-      <div className="navbar-end">
-        <Link to="/signin" className="btn">
-          Sign In
-        </Link>
-      </div>
+      {user ? (
+        <div className="relative navbar-end">
+          <button
+            type="button"
+            onClick={toggleProfileVisibility}
+            className="flex items-center justify-center w-10 h-10 rounded-full focus:outline-none"
+          >
+            {user?.photoURL ? (
+              <img className="" src={user?.photoURL} alt="User Image" />
+            ) : (
+              <FaUserAlt className="text-6xl" />
+            )}
+          </button>
+
+          {isProfileVisible && (
+            <div className="absolute -right-2 top-12 mt-2 py-2 w-44 bg-white bg-opacity-50 rounded shadow-lg transition-opacity duration-1000">
+              <h1 className="ps-4 pr-2 py-2 ">{user?.email}</h1>
+              <button className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left">
+                View Profile
+              </button>
+              <button
+                onClick={handleSignOut}
+                className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
+              >
+                Sign Out
+              </button>
+            </div>
+          )}
+        </div>
+      ) : (
+        <div className="navbar-end">
+          <Link to="/signin" className="btn">
+            Sign In
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

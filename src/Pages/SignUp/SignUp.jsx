@@ -1,14 +1,14 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const SignUp = () => {
   const [viewPassword, setViewPassword] = useState(false);
   const [viewConfirmPassword, setViewConfirmPassword] = useState(false);
-
   const {
     register,
     handleSubmit,
@@ -16,12 +16,18 @@ const SignUp = () => {
     formState: { errors },
   } = useForm();
 
+  const { createUser } = useContext(AuthContext);
+
   const password = watch("password");
   const confirmPassword = watch("confirm_password");
   const isMatched = password === confirmPassword;
 
   const onSubmit = (data) => {
     console.log(data);
+    createUser(data.email, data.password).then((result) => {
+      const createdUser = result.user;
+      console.log(createdUser);
+    });
   };
 
   const toggleViewPassword = () => {
@@ -99,19 +105,14 @@ const SignUp = () => {
               <span className="text-red-500">Password is required</span>
             )}
             {errors.password?.type === "minLength" && (
-              <span className="text-red-500">
-                Use minimum 6 character for password
-              </span>
+              <span className="text-red-500">Use minimum 6 characters</span>
             )}
             {errors.password?.type === "maxLength" && (
-              <span className="text-red-500">
-                Use maximum 20 character for password
-              </span>
+              <span className="text-red-500">Use maximum 20 characters</span>
             )}
             {errors.password?.type === "pattern" && (
               <span className="text-red-500">
-                Password must have one uppercase, one lowercase, one number and
-                one special character
+                Use uppercase, lowercase, numbers and special characters
               </span>
             )}
             <div className="mb-2 relative">
@@ -148,6 +149,9 @@ const SignUp = () => {
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-black focus:ring-black focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
+            {errors.photo && (
+              <span className="text-red-500">Photo Url is required</span>
+            )}
             <div className="mb-2 relative w-full grid grid-cols-2 gap-5">
               <div>
                 <label className="block text-sm font-semibold text-gray-800">

@@ -30,11 +30,11 @@ const SignIn = () => {
   };
 
   return (
-    <section>
+    <section className="pt-1">
       <Helmet>
         <title>Sign In | Focus Academy</title>
       </Helmet>
-      <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
+      <div className="relative mt-10 flex flex-col justify-center min-h-screen overflow-hidden">
         <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">
           <h1 className="text-3xl font-semibold text-center text-black uppercase">
             Sign In
