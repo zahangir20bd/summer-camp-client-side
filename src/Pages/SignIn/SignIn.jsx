@@ -2,12 +2,17 @@
 import { Helmet } from "react-helmet-async";
 import { useContext, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const { signIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
 
   // Password Show and Hide Button Toggle handler
   const togglePasswordVisibility = () => {
@@ -17,15 +22,25 @@ const SignIn = () => {
   // Sign In Handler
   const handleSignIn = (event) => {
     event.preventDefault();
-    const from = event.target;
-    const email = from.email.value;
-    const password = from.password.value;
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
 
     console.log(email, password);
 
     signIn(email, password).then((result) => {
+      form.reset();
       const loggedInUser = result.user;
       console.log("logged in User", loggedInUser);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Sign In Successful",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+
+      navigate(from, { replace: true });
     });
   };
 

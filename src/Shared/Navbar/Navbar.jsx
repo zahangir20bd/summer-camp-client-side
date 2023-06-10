@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
@@ -7,6 +7,7 @@ import { FaUserAlt } from "react-icons/fa";
 const Navbar = () => {
   const [isProfileVisible, setProfileVisible] = useState(false);
   const { user, signingOut } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const toggleProfileVisibility = () => {
     setProfileVisible(!isProfileVisible);
@@ -15,7 +16,7 @@ const Navbar = () => {
   const handleSignOut = () => {
     signingOut()
       .then(() => {
-        //
+        navigate("/signin");
       })
       .catch((error) => {
         console.log(error);
@@ -25,7 +26,7 @@ const Navbar = () => {
   const navMenus = (
     <>
       <li>
-        <Link>Dashboard</Link>
+        <Link to="/dashboard">Dashboard</Link>
       </li>
       <li>
         <Link to="/">Home</Link>
