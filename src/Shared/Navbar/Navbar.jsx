@@ -9,8 +9,12 @@ const Navbar = () => {
   const { user, signingOut } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const toggleProfileVisibility = () => {
-    setProfileVisible(!isProfileVisible);
+  const view = () => {
+    setProfileVisible(true);
+  };
+
+  const hide = () => {
+    setProfileVisible(false);
   };
 
   const handleSignOut = () => {
@@ -25,9 +29,13 @@ const Navbar = () => {
 
   const navMenus = (
     <>
-      <li>
-        <Link to="/dashboard">Dashboard</Link>
-      </li>
+      {user ? (
+        <li>
+          <Link to="/dashboard">Dashboard</Link>
+        </li>
+      ) : (
+        ""
+      )}
       <li>
         <Link to="/">Home</Link>
       </li>
@@ -40,7 +48,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar fixed z-10 bg-slate-100 bg-opacity-50 container">
+    <div className="navbar fixed z-50 bg-slate-100 bg-opacity-50 container">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -77,7 +85,8 @@ const Navbar = () => {
         <div className="relative navbar-end">
           <button
             type="button"
-            onClick={toggleProfileVisibility}
+            onMouseEnter={view}
+            onMouseLeave={hide}
             className="flex items-center justify-center w-10 h-10 rounded-full focus:outline-none"
           >
             {user?.photoURL ? (
@@ -88,7 +97,11 @@ const Navbar = () => {
           </button>
 
           {isProfileVisible && (
-            <div className="absolute -right-2 top-12 mt-2 py-2 w-44 bg-white bg-opacity-50 rounded shadow-lg transition-opacity duration-1000">
+            <div
+              onMouseEnter={view}
+              onMouseLeave={hide}
+              className="absolute z-10 -right-2 top-12  py-2 w-44 bg-slate-100  bg-opacity-50 rounded shadow-lg transition-opacity duration-1000"
+            >
               <h1 className="ps-4 pr-2 py-2 ">{user?.email}</h1>
               <button className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left">
                 View Profile

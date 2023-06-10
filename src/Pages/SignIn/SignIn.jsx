@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import { Helmet } from "react-helmet-async";
 import { useContext, useState } from "react";
@@ -5,9 +6,11 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
 
 const SignIn = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [error, setError] = useState("");
   const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -19,29 +22,30 @@ const SignIn = () => {
     setPasswordVisible(!passwordVisible);
   };
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
   // Sign In Handler
-  const handleSignIn = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const email = form.email.value;
-    const password = form.password.value;
+  const handleSignIn = (data) => {
+    signIn(data.email, data.password)
+      .then((result) => {
+        setError("");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Sign In Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
 
-    console.log(email, password);
-
-    signIn(email, password).then((result) => {
-      form.reset();
-      const loggedInUser = result.user;
-      console.log("logged in User", loggedInUser);
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Sign In Successful",
-        showConfirmButton: false,
-        timer: 1500,
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        setError(error.message);
       });
-
-      navigate(from, { replace: true });
-    });
   };
 
   return (
@@ -54,7 +58,7 @@ const SignIn = () => {
           <h1 className="text-3xl font-semibold text-center text-black uppercase">
             Sign In
           </h1>
-          <form onSubmit={handleSignIn} className="mt-6">
+          <form onSubmit={handleSubmit(handleSignIn)} className="mt-6">
             <div className="mb-2">
               <label className="block text-sm font-semibold text-gray-800">
                 Email
@@ -62,10 +66,14 @@ const SignIn = () => {
               <input
                 type="email"
                 name="email"
+                {...register("email", { required: true })}
                 placeholder="Email"
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-black focus:ring-black focus:outline-none focus:ring focus:ring-opacity-40"
               />
             </div>
+            {errors.email && (
+              <span className="text-red-500">Email is required</span>
+            )}
             <div className="mb-2 relative">
               <label className="block text-sm font-semibold text-gray-800">
                 Password
@@ -74,6 +82,7 @@ const SignIn = () => {
                 type={passwordVisible ? "text" : "password"}
                 name="password"
                 placeholder="Password"
+                {...register("password", { required: true })}
                 className="block w-full px-4 py-2 mt-2 text-black bg-white border rounded-md focus:border-black focus:ring-black focus:outline-none focus:ring focus:ring-opacity-40"
               />
               <button
@@ -84,12 +93,18 @@ const SignIn = () => {
                 {passwordVisible ? <FaEyeSlash /> : <FaEye />}
               </button>
             </div>
-            <Link
-              title="TODO Need to Implement"
-              className="text-xs text-blue-500 hover:underline cursor-pointer"
-            >
-              Forget Password? {/*TODO Need To Implemented*/}
-            </Link>
+            {errors.password && (
+              <span className="text-red-500">Password is required</span>
+            )}
+            {error && <span className="text-red-500">{error}</span>}
+            <div>
+              <Link
+                title="TODO Need to Implement"
+                className="text-xs text-blue-500 hover:underline cursor-pointer"
+              >
+                Forget Password? {/*TODO Need To Implemented*/}
+              </Link>
+            </div>
             <div className="mt-6">
               <button
                 type="submit"
