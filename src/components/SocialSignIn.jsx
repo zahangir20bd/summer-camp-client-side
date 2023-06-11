@@ -11,7 +11,8 @@ const SocialSignIn = () => {
     googleSignIn()
       .then((result) => {
         const currentUser = result.user;
-        console.log(currentUser);
+        navigate(from, { replace: true });
+        // console.log(currentUser);
         const newUser = {
           user_name: currentUser.displayName,
           user_email: currentUser.email,
@@ -26,11 +27,8 @@ const SocialSignIn = () => {
           body: JSON.stringify(newUser),
         })
           .then((res) => res.json())
-          .then((data) => {
+          .then(() => {
             // console.log("response", data);
-            if (data.insertedId) {
-              navigate(from, { replace: true });
-            }
           });
       })
       .catch((error) => {
@@ -42,7 +40,8 @@ const SocialSignIn = () => {
     gitHubSignIn()
       .then((result) => {
         const currentUser = result.user;
-        console.log(currentUser);
+        navigate(from, { replace: true });
+        // console.log(currentUser);
         const newUser = {
           user_name: currentUser.displayName,
           user_email: currentUser.email,
@@ -57,11 +56,8 @@ const SocialSignIn = () => {
           body: JSON.stringify(newUser),
         })
           .then((res) => res.json())
-          .then((data) => {
+          .then(() => {
             // console.log("response", data);
-            if (data.insertedId) {
-              navigate(from, { replace: true });
-            }
           });
       })
       .catch((error) => {
