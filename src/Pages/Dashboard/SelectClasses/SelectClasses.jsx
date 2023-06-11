@@ -3,12 +3,42 @@ import SectionTitle from "../../../components/SectionTitle";
 import useMySelectedClasses from "../../../Hooks/useMySelectedClasses";
 import { FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const SelectClasses = () => {
-  const [mySelectClasses] = useMySelectedClasses();
+  const [mySelectClasses, refetch] = useMySelectedClasses();
   const total = mySelectClasses
-    .reduce((sum, item) => item.price + sum, 0)
+    .reduce((sum, selectClass) => selectClass.price + sum, 0)
     .toFixed(2);
+
+  const handleDelete = (selectClass) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Once you delete you can't revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/selectclasses/${selectClass._id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              refetch();
+              Swal.fire(
+                "Deleted!",
+                "Class deleted from Selected Class",
+                "success"
+              );
+            }
+          });
+      }
+    });
+  };
   return (
     <section className="w-full mb-10">
       <Helmet>
@@ -46,9 +76,14 @@ const SelectClasses = () => {
                     <td className="text-center">
                       {selectClass.available_seats}
                     </td>
-                    <td className="text-end">$ {selectClass.price}</td>
+                    <td className="text-end">
+                      $ {selectClass.price.toFixed(2)}
+                    </td>
                     <th className="text-center">
-                      <button className="btn btn-ghost btn-circle text-2xl">
+                      <button
+                        onClick={() => handleDelete(selectClass)}
+                        className="btn btn-ghost btn-circle text-2xl"
+                      >
                         <FaTrash />
                       </button>
                     </th>
@@ -62,7 +97,7 @@ const SelectClasses = () => {
                   <th></th>
                   <th></th>
                   <th className="text-end">Total: </th>
-                  <th className="text-end">{total}</th>
+                  <th className="text-end">$ {total}</th>
                   <th>
                     <Link>
                       <button className="btn btn-neutral btn-sm">Pay</button>
