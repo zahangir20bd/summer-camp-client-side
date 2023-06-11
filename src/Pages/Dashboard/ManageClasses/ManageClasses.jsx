@@ -1,12 +1,14 @@
 import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../components/SectionTitle";
-import useClasses from "../../../Hooks/useClasses";
 import { FaCheck, FaComment, FaTimes } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
 
 const ManageClasses = () => {
-  const [classes, , refetch] = useClasses();
-  console.log(classes);
+  const { data: classes = [], refetch } = useQuery(["classes"], async () => {
+    const res = await fetch("http://localhost:5000/classes");
+    return res.json();
+  });
 
   // Class Approved handler
   const handleApproved = (id) => {
@@ -96,15 +98,19 @@ const ManageClasses = () => {
                   <th className="text-center">
                     <button
                       onClick={() => handleApproved(item._id)}
-                      disabled={item.status === "Approved" || "Deny"}
+                      disabled={
+                        item.status === "Approved" || item.status === "Deny"
+                      }
                       className="btn btn-success btn-circle btn-sm text-xl"
                     >
                       <FaCheck />
                     </button>
                     <button
                       onClick={() => handleDeny(item._id)}
-                      disabled={item.status === "Approved" || "Deny"}
-                      className="btn btn-warning m-1 btn-circle btn-sm text-xl"
+                      disabled={
+                        item.status === "Approved" || item.status === "Deny"
+                      }
+                      className="btn bg-red-500 hover:bg-red-600 m-1 btn-circle btn-sm text-xl"
                     >
                       <FaTimes />
                     </button>
