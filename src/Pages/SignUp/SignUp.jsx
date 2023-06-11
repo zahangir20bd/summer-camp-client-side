@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
@@ -31,22 +32,44 @@ const SignUp = () => {
   const isMatched = password === confirmPassword;
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log("Data from SignUP", data);
     createUser(data.email, data.password).then((result) => {
       const currentUser = result.user;
-      console.log(currentUser);
+      // console.log(currentUser);
       updateUserProfile(data.name, data.photo, data.phone_number)
         .then(() => {
-          // console.log("User Profile Updated");
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Sign Up Successful",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-          reset();
-          navigate(from, { replace: true });
+          const newUser = {
+            user_name: data.name,
+            user_email: data.email,
+            user_image: data.photo,
+            user_role: "student",
+            gender: data.gender,
+            date_of_birth: data.date_of_birth,
+            phone_number: data.phone_number,
+            address: data.address,
+          };
+          fetch("http://localhost:5000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(newUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              // console.log("response", data);
+              if (data.insertedId) {
+                reset();
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Sign Up Successful",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                navigate(from, { replace: true });
+              }
+            });
         })
         .catch((error) => {
           console.log(error);

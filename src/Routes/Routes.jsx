@@ -9,6 +9,7 @@ import PopularClassCard from "../Pages/PopularClassCard/PopularClassCard";
 import Dashboard from "../Layout/Dashboard";
 import SelectClasses from "../Pages/Dashboard/SelectClasses/SelectClasses";
 import EnrolledClasses from "../Pages/Dashboard/EnrolledClasses/EnrolledClasses";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -43,7 +44,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: "selectclasses",
