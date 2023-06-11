@@ -78,7 +78,7 @@ const ClassCard = ({ singleClass }) => {
       });
     }
   };
-  console.log("User From useAuth:", user);
+  // console.log("User From useAuth:", user);
 
   if (user && user?.email) {
     fetch(`http://localhost:5000/selectclasses?email=${user?.email}`)

@@ -1,10 +1,6 @@
-// import { useEffect, useState } from "react";
-
 import { useQuery } from "@tanstack/react-query";
 
 const useClasses = () => {
-  // const [classes, setClasses] = useState([]);
-
   const { refetch, data: classes = [] } = useQuery({
     queryKey: ["classes"],
     queryFn: async () => {
@@ -13,13 +9,17 @@ const useClasses = () => {
     },
   });
 
-  const sortClasses = [...classes].sort(
+  const approvedClasses = classes.filter(
+    (singleClass) => singleClass.status === "Approved"
+  );
+
+  const sortClasses = [...approvedClasses].sort(
     (a, b) => a.available_seats - b.available_seats
   );
 
   const popularClasses = sortClasses.slice(0, 6);
 
-  return [classes, popularClasses, refetch];
+  return [approvedClasses, popularClasses, classes, refetch];
 };
 
 export default useClasses;

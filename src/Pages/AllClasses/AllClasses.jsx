@@ -4,8 +4,7 @@ import SectionTitle from "../../components/SectionTitle";
 import ClassCard from "./ClassCard";
 
 const AllClasses = () => {
-  const [classes] = useClasses();
-  console.log(classes);
+  const [approvedClasses] = useClasses();
 
   return (
     <div className="pt-1 mb-20">
@@ -14,7 +13,7 @@ const AllClasses = () => {
       </Helmet>
       <SectionTitle heading="All Classes"></SectionTitle>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-        {classes.map((singleClass) => (
+        {approvedClasses.map((singleClass) => (
           <ClassCard
             key={singleClass._id}
             singleClass={singleClass}

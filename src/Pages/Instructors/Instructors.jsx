@@ -1,23 +1,15 @@
 import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../components/SectionTitle";
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaLink } from "react-icons/fa";
 import "./Instructors.css";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import useUsers from "../../Hooks/useUsers";
 
 const Instructors = () => {
-  const [instructors, setInstructors] = useState([]);
+  const [, , instructors] = useUsers();
 
-  useEffect(() => {
-    fetch("http://localhost:5000/instructors")
-      .then((res) => res.json())
-      .then((data) => {
-        setInstructors(data);
-        console.log(data);
-      });
-  }, []);
   return (
     <section className="pt-1 mb-10">
       <Helmet>
