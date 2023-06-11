@@ -12,8 +12,26 @@ const SocialSignIn = () => {
       .then((result) => {
         const currentUser = result.user;
         console.log(currentUser);
-
-        navigate(from, { replace: true });
+        const newUser = {
+          user_name: currentUser.displayName,
+          user_email: currentUser.email,
+          user_image: currentUser.photoURL,
+          user_role: "student",
+        };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            // console.log("response", data);
+            if (data.insertedId) {
+              navigate(from, { replace: true });
+            }
+          });
       })
       .catch((error) => {
         console.log(error);
@@ -25,8 +43,26 @@ const SocialSignIn = () => {
       .then((result) => {
         const currentUser = result.user;
         console.log(currentUser);
-
-        navigate(from, { replace: true });
+        const newUser = {
+          user_name: currentUser.displayName,
+          user_email: currentUser.email,
+          user_image: currentUser.photoURL,
+          user_role: "student",
+        };
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            // console.log("response", data);
+            if (data.insertedId) {
+              navigate(from, { replace: true });
+            }
+          });
       })
       .catch((error) => {
         console.log(error);
