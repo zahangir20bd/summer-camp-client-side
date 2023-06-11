@@ -41,7 +41,7 @@ const SignUp = () => {
             user_name: data.name,
             user_email: data.email,
             user_image: data.photo,
-            user_role: "student",
+            user_role: "Student",
             gender: data.gender,
             date_of_birth: data.date_of_birth,
             phone_number: data.phone_number,

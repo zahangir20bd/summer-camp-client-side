@@ -52,7 +52,7 @@ const SelectClasses = () => {
         <div>
           <div className="overflow-x-auto">
             <table className="table">
-              {/* head */}
+              {/* Table Header */}
               <thead className="text-lg">
                 <tr>
                   <th>
@@ -65,6 +65,7 @@ const SelectClasses = () => {
                   <th className="text-center">Action</th>
                 </tr>
               </thead>
+              {/* Table Body */}
               <tbody>
                 {mySelectClasses.map((selectClass, index) => (
                   <tr key={selectClass._id}>
@@ -90,7 +91,7 @@ const SelectClasses = () => {
                   </tr>
                 ))}
               </tbody>
-              {/* foot */}
+              {/* Table Footer */}
               <tfoot className="text-lg">
                 <tr>
                   <th></th>

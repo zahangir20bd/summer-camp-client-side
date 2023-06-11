@@ -17,7 +17,7 @@ const SocialSignIn = () => {
           user_name: currentUser.displayName,
           user_email: currentUser.email,
           user_image: currentUser.photoURL,
-          user_role: "student",
+          user_role: "Student",
         };
         fetch("http://localhost:5000/users", {
           method: "POST",
