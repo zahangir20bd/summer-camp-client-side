@@ -102,7 +102,7 @@ const ClassCard = ({ singleClass }) => {
       } shadow-xl`}
     >
       <figure>
-        <img src={class_image} alt="Movie" />
+        <img src={class_image} alt="Class Image" />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{class_name}</h2>
