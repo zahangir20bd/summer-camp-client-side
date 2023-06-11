@@ -9,8 +9,6 @@ import "./PopularClasses.css";
 const PopularClasses = () => {
   const [, popularClasses] = useClasses();
 
-  // console.log(popularClasses);
-
   const params = {
     slidesPerView: 4,
     spaceBetween: 30,
@@ -31,7 +29,12 @@ const PopularClasses = () => {
           <div key={singleClass._id}>
             <figure className="imgHover">
               <img src={singleClass.class_image} alt="" />
-              <Link className="text-4xl text-white z-10">
+              <Link
+                to={{
+                  pathname: `/popularclass/${singleClass._id}`,
+                }}
+                className="text-4xl text-white z-10"
+              >
                 <FaLink className="ProfileLink" />
               </Link>
             </figure>

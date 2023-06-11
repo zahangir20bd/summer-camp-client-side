@@ -7,6 +7,7 @@ import SignUp from "../Pages/SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import Instructors from "../Pages/Instructors/Instructors";
+import PopularClassCard from "../Pages/PopularClassCard/PopularClassCard";
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: "classes",
         element: <AllClasses></AllClasses>,
+      },
+      {
+        path: "popularclass/:id",
+        element: <PopularClassCard></PopularClassCard>,
       },
       {
         path: "instructors",

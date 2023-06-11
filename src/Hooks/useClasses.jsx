@@ -1,26 +1,25 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
+
+import { useQuery } from "@tanstack/react-query";
 
 const useClasses = () => {
-  const [classes, setClasses] = useState([]);
+  // const [classes, setClasses] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:5000/classes")
-      .then((res) => res.json())
-      .then((data) => {
-        setClasses(data);
-      });
-  }, []);
+  const { refetch, data: classes = [] } = useQuery({
+    queryKey: ["classes"],
+    queryFn: async () => {
+      const res = await fetch(`http://localhost:5000/classes`);
+      return res.json();
+    },
+  });
 
-  //   sorting minimum available seats to maximum available seats
   const sortClasses = [...classes].sort(
     (a, b) => a.available_seats - b.available_seats
   );
-  //   console.log(newClasses);
 
   const popularClasses = sortClasses.slice(0, 6);
-  //   console.log(popularClasses);
 
-  return [classes, popularClasses];
+  return [classes, popularClasses, refetch];
 };
 
 export default useClasses;

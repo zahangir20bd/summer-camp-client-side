@@ -1,13 +1,17 @@
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { FaOpencart, FaSignOutAlt, FaUser, FaUserAlt } from "react-icons/fa";
+import useMySelectedClasses from "../../Hooks/useMySelectedClasses";
 
 const Navbar = () => {
   const [isProfileVisible, setProfileVisible] = useState(false);
+  const [isTransparent, setTransparent] = useState(true);
   const { user, signingOut } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const [mySelectClasses] = useMySelectedClasses();
 
   const view = () => {
     setProfileVisible(true);
@@ -26,6 +30,20 @@ const Navbar = () => {
         console.log(error);
       });
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const scrollThreshold = 100;
+      setTransparent(scrollPosition < scrollThreshold);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const navMenus = (
     <>
@@ -47,8 +65,13 @@ const Navbar = () => {
       </li>
     </>
   );
+
   return (
-    <div className="navbar fixed z-50 bg-slate-100 bg-opacity-50 container">
+    <nav
+      className={`navbar fixed z-50 bg-slate-100 ${
+        isTransparent ? "bg-opacity-50" : "bg-opacity-100"
+      } container`}
+    >
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -104,7 +127,7 @@ const Navbar = () => {
             <div
               onMouseEnter={view}
               onMouseLeave={hide}
-              className="absolute z-20 -right-2 top-12  py-2 w-52 bg-slate-100  bg-opacity-50 rounded shadow-lg transition-opacity duration-1000"
+              className="absolute z-20 -right-2 top-12  py-2 w-52 bg-slate-100   rounded shadow-lg transition-opacity duration-1000"
             >
               <h1 className="ps-4 pr-2 py-2 font-bold">{user?.displayName}</h1>
               <button className="px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left block">
@@ -117,7 +140,9 @@ const Navbar = () => {
                   <FaOpencart className="text-lg" />
                   <div>
                     Select Classes{" "}
-                    <span className="badge badge-neutral">+0</span>
+                    <span className="badge badge-neutral">
+                      +{mySelectClasses?.length || 0}
+                    </span>
                   </div>
                 </div>
               </button>
@@ -139,7 +164,7 @@ const Navbar = () => {
           </Link>
         </div>
       )}
-    </div>
+    </nav>
   );
 };
 

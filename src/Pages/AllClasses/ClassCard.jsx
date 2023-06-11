@@ -2,12 +2,14 @@ import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
+import useMySelectedClasses from "../../Hooks/useMySelectedClasses";
 
 const ClassCard = ({ singleClass }) => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [, refetch] = useMySelectedClasses();
 
   const {
     _id,
@@ -49,6 +51,7 @@ const ClassCard = ({ singleClass }) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
+            refetch();
             Swal.fire({
               position: "top-end",
               icon: "success",
@@ -57,6 +60,7 @@ const ClassCard = ({ singleClass }) => {
               timer: 1500,
             });
           }
+
           setButtonDisabled(true);
         });
     } else {
@@ -74,10 +78,10 @@ const ClassCard = ({ singleClass }) => {
       });
     }
   };
-  // console.log("User From useAuth:", user);
+  console.log("User From useAuth:", user);
 
   if (user && user?.email) {
-    fetch(`http://localhost:5000/selectclasses/${user?.email}`)
+    fetch(`http://localhost:5000/selectclasses?email=${user?.email}`)
       .then((res) => res.json())
       .then((mySelectClasses) => {
         // console.log(mySelectClasses);
