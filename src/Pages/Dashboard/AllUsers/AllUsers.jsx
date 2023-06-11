@@ -108,73 +108,69 @@ const AllUsers = () => {
       <SectionTitle heading="Manage Users" />
       <div className="px-10">
         <h2 className="text-3xl font-bold">Total Users: {users.length}</h2>
-        <div>
-          <div>
-            <div className="overflow-x-auto">
-              <table className="table">
-                {/* Table Header */}
-                <thead className="text-lg">
-                  <tr>
-                    <th>
-                      <label>#</label>
-                    </th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th className="text-center">Make</th>
-                    <th className="text-center">Action</th>
-                  </tr>
-                </thead>
-                {/* Table Body */}
-                <tbody>
-                  {users.map((user, index) => (
-                    <tr key={user._id}>
-                      <th>
-                        <label>{index + 1}</label>
-                      </th>
-                      <td>{user.user_name}</td>
-                      <td>{user.user_email}</td>
-                      <td>{user.user_role}</td>
-                      <td className="text-center">
-                        {/* Make Admin Button */}
-                        <button
-                          onClick={() => handleMakeAdmin(user._id)}
-                          disabled={user.user_role === "Admin"}
-                          className="btn btn-ghost btn-circle text-2xl"
-                        >
-                          <FaUserShield />
-                        </button>
-                        {/* Make Instructor Button */}
-                        <button
-                          onClick={() => handleMakeInstructor(user._id)}
-                          disabled={user.user_role === "Instructor"}
-                          className="btn btn-ghost btn-circle text-2xl"
-                        >
-                          <FaUserTie />
-                        </button>
-                        {/* Make Student Button */}
-                        <button
-                          onClick={() => handleMakeStudent(user._id)}
-                          disabled={user.user_role === "Student"}
-                          className="btn btn-ghost btn-circle text-2xl"
-                        >
-                          <FaUserGraduate />
-                        </button>
-                      </td>
-                      <th className="text-center">
-                        <button
-                          onClick={() => handleDeleteUser(user._id)}
-                          className="btn btn-ghost btn-circle text-2xl"
-                        >
-                          <FaTrash />
-                        </button>
-                      </th>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
+        <div className="overflow-x-auto">
+          <table className="table">
+            {/* Table Header */}
+            <thead className="text-lg">
+              <tr>
+                <th>
+                  <label>#</label>
+                </th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th className="text-center">Make</th>
+                <th className="text-center">Action</th>
+              </tr>
+            </thead>
+            {/* Table Body */}
+            <tbody>
+              {users.map((user, index) => (
+                <tr key={user._id}>
+                  <th>
+                    <label>{index + 1}</label>
+                  </th>
+                  <td>{user.user_name}</td>
+                  <td>{user.user_email}</td>
+                  <td>{user.user_role}</td>
+                  <td className="text-center">
+                    {/* Make Admin Button */}
+                    <button
+                      onClick={() => handleMakeAdmin(user._id)}
+                      disabled={user.user_role === "Admin"}
+                      className="btn btn-ghost btn-circle text-2xl"
+                    >
+                      <FaUserShield />
+                    </button>
+                    {/* Make Instructor Button */}
+                    <button
+                      onClick={() => handleMakeInstructor(user._id)}
+                      disabled={user.user_role === "Instructor"}
+                      className="btn btn-ghost btn-circle text-2xl"
+                    >
+                      <FaUserTie />
+                    </button>
+                    {/* Make Student Button */}
+                    <button
+                      onClick={() => handleMakeStudent(user._id)}
+                      disabled={user.user_role === "Student"}
+                      className="btn btn-ghost btn-circle text-2xl"
+                    >
+                      <FaUserGraduate />
+                    </button>
+                  </td>
+                  <th className="text-center">
+                    <button
+                      onClick={() => handleDeleteUser(user._id)}
+                      className="btn btn-ghost btn-circle text-2xl"
+                    >
+                      <FaTrash />
+                    </button>
+                  </th>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
     </section>
