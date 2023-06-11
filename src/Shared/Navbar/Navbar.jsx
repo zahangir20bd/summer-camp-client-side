@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
@@ -49,19 +49,19 @@ const Navbar = () => {
     <>
       {user ? (
         <li>
-          <Link to="/dashboard">Dashboard</Link>
+          <NavLink to="/dashboard">Dashboard</NavLink>
         </li>
       ) : (
         ""
       )}
       <li>
-        <Link to="/">Home</Link>
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <Link to="/instructors">Instructors</Link>
+        <NavLink to="/instructors">Instructors</NavLink>
       </li>
       <li>
-        <Link to="/classes">Classes</Link>
+        <NavLink to="/classes">Classes</NavLink>
       </li>
     </>
   );
@@ -131,20 +131,24 @@ const Navbar = () => {
             >
               <h1 className="ps-4 pr-2 py-2 font-bold">{user?.displayName}</h1>
               <button className="px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left block">
-                <div className="flex items-center gap-2">
-                  <FaUser className="text-lg" /> <span>View Profile</span>
-                </div>
+                <NavLink>
+                  <div className="flex items-center gap-2">
+                    <FaUser className="text-lg" /> <span>View Profile</span>
+                  </div>
+                </NavLink>
               </button>
               <button className="px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left block">
-                <div className="flex items-center gap-2">
-                  <FaOpencart className="text-lg" />
-                  <div>
-                    Select Classes{" "}
-                    <span className="badge badge-neutral">
-                      +{mySelectClasses?.length || 0}
-                    </span>
+                <NavLink to="/dashboard/selectclasses">
+                  <div className="flex items-center gap-2">
+                    <FaOpencart className="text-lg" />
+                    <div>
+                      Select Classes{" "}
+                      <span className="badge badge-neutral">
+                        +{mySelectClasses?.length || 0}
+                      </span>
+                    </div>
                   </div>
-                </div>
+                </NavLink>
               </button>
               <button
                 onClick={handleSignOut}
@@ -159,9 +163,9 @@ const Navbar = () => {
         </div>
       ) : (
         <div className="navbar-end">
-          <Link to="/signin" className="btn">
+          <NavLink to="/signin" className="btn">
             Sign In
-          </Link>
+          </NavLink>
         </div>
       )}
     </nav>

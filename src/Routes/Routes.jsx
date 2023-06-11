@@ -4,10 +4,11 @@ import Home from "../Pages/Home/Home/Home";
 import AllClasses from "../Pages/AllClasses/AllClasses";
 import SignIn from "../Pages/SignIn/SignIn";
 import SignUp from "../Pages/SignUp/SignUp";
-import PrivateRoute from "./PrivateRoute";
-import Dashboard from "../Pages/Dashboard/Dashboard";
 import Instructors from "../Pages/Instructors/Instructors";
 import PopularClassCard from "../Pages/PopularClassCard/PopularClassCard";
+import Dashboard from "../Layout/Dashboard";
+import SelectClasses from "../Pages/Dashboard/SelectClasses/SelectClasses";
+import EnrolledClasses from "../Pages/Dashboard/EnrolledClasses/EnrolledClasses";
 
 export const router = createBrowserRouter([
   {
@@ -38,13 +39,19 @@ export const router = createBrowserRouter([
         path: "signup",
         element: <SignUp></SignUp>,
       },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
       {
-        path: "dashboard",
-        element: (
-          <PrivateRoute>
-            <Dashboard></Dashboard>
-          </PrivateRoute>
-        ),
+        path: "selectclasses",
+        element: <SelectClasses></SelectClasses>,
+      },
+      {
+        path: "enrolledclasses",
+        element: <EnrolledClasses></EnrolledClasses>,
       },
     ],
   },

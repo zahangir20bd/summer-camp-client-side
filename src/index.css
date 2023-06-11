@@ -1,3 +1,12 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+a.active{
+    color: black;
+    background-color: rgba(128, 128, 128, 0.185)
+}
+
+a {
+    background-color: transparent;
+}
