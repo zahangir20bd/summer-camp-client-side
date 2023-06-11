@@ -1,9 +1,16 @@
 import { useState } from "react";
+import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ClassCard = ({ singleClass }) => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const {
+    _id,
     class_image,
     class_name,
     instructor_image,
@@ -12,7 +19,7 @@ const ClassCard = ({ singleClass }) => {
     price,
   } = singleClass;
 
-  console.log(singleClass);
+  // console.log(singleClass);
 
   const selectDisabled = available_seats === 0;
 
@@ -20,11 +27,69 @@ const ClassCard = ({ singleClass }) => {
     selectDisabled || buttonDisabled ? " cursor-not-allowed" : ""
   }`;
 
-  const handleSelectClass = ({ singleClass }) => {
-    console.log(singleClass);
-
-    setButtonDisabled(true);
+  const handleSelectClass = () => {
+    if (user && user.email) {
+      const selectClass = {
+        class_id: _id,
+        class_image,
+        class_name,
+        instructor_image,
+        instructor_name,
+        available_seats,
+        price,
+        user_email: user.email,
+      };
+      fetch("http://localhost:5000/selectclasses", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(selectClass),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Class Selected Successful",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+          setButtonDisabled(true);
+        });
+    } else {
+      Swal.fire({
+        title: "You have to sign in to select the class",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Sign In",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/signin", { state: { from: location } });
+        }
+      });
+    }
   };
+  // console.log("User From useAuth:", user);
+
+  if (user && user?.email) {
+    fetch(`http://localhost:5000/selectclasses/${user?.email}`)
+      .then((res) => res.json())
+      .then((mySelectClasses) => {
+        // console.log(mySelectClasses);
+        const selectedClass = mySelectClasses.find(
+          (item) => item.class_id === _id
+        );
+        // console.log(selectedClass);
+        if (selectedClass) {
+          setButtonDisabled(true);
+        }
+      });
+  }
 
   return (
     <div
@@ -47,7 +112,7 @@ const ClassCard = ({ singleClass }) => {
         </div>
         <div className="card-actions items-end justify-end h-full">
           <button
-            onClick={() => handleSelectClass(singleClass)}
+            onClick={handleSelectClass}
             disabled={selectDisabled || buttonDisabled}
             className={buttonClasses}
           >
