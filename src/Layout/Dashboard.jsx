@@ -29,19 +29,17 @@ const Dashboard = () => {
           <img className="mb-10" src={logo} alt="" />
 
           <li>
-            <button className="px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left block">
-              <NavLink to="/dashboard/selectclasses">
-                <div className="flex items-center gap-2">
-                  <FaOpencart className="text-lg" />
-                  <div>
-                    Select Classes{" "}
-                    <span className="badge badge-neutral">
-                      +{mySelectClasses?.length || 0}
-                    </span>
-                  </div>
+            <NavLink to="/dashboard/selectclasses">
+              <div className="flex items-center gap-2">
+                <FaOpencart className="text-lg" />
+                <div>
+                  Select Classes{" "}
+                  <span className="badge badge-neutral">
+                    +{mySelectClasses?.length || 0}
+                  </span>
                 </div>
-              </NavLink>
-            </button>
+              </div>
+            </NavLink>
           </li>
           <li>
             <NavLink to="enrolledclasses">
