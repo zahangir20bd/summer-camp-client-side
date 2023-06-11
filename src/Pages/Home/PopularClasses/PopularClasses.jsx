@@ -3,6 +3,8 @@ import Swiper from "react-id-swiper";
 import SectionTitle from "../../../components/SectionTitle";
 import useClasses from "../../../Hooks/useClasses";
 import { Link } from "react-router-dom";
+import { FaLink } from "react-icons/fa";
+import "./PopularClasses.css";
 
 const PopularClasses = () => {
   const [, popularClasses] = useClasses();
@@ -27,7 +29,12 @@ const PopularClasses = () => {
       <Swiper {...params}>
         {popularClasses.map((singleClass) => (
           <div key={singleClass._id}>
-            <img src={singleClass.class_image} alt="" />
+            <figure className="imgHover">
+              <img src={singleClass.class_image} alt="" />
+              <Link className="text-4xl text-white z-10">
+                <FaLink className="ProfileLink" />
+              </Link>
+            </figure>
             <p className="absolute bottom-3 text-white px-1">
               {singleClass.class_name}
             </p>

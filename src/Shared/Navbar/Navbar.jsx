@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { FaUserAlt } from "react-icons/fa";
+import { FaOpencart, FaSignOutAlt, FaUser, FaUserAlt } from "react-icons/fa";
 
 const Navbar = () => {
   const [isProfileVisible, setProfileVisible] = useState(false);
@@ -104,17 +104,30 @@ const Navbar = () => {
             <div
               onMouseEnter={view}
               onMouseLeave={hide}
-              className="absolute z-20 -right-2 top-12  py-2 w-44 bg-slate-100  bg-opacity-50 rounded shadow-lg transition-opacity duration-1000"
+              className="absolute z-20 -right-2 top-12  py-2 w-52 bg-slate-100  bg-opacity-50 rounded shadow-lg transition-opacity duration-1000"
             >
               <h1 className="ps-4 pr-2 py-2 font-bold">{user?.displayName}</h1>
-              <button className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left">
-                View Profile
+              <button className="px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left block">
+                <div className="flex items-center gap-2">
+                  <FaUser className="text-lg" /> <span>View Profile</span>
+                </div>
+              </button>
+              <button className="px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left block">
+                <div className="flex items-center gap-2">
+                  <FaOpencart className="text-lg" />
+                  <div>
+                    Select Classes{" "}
+                    <span className="badge badge-neutral">+0</span>
+                  </div>
+                </div>
               </button>
               <button
                 onClick={handleSignOut}
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"
               >
-                Sign Out
+                <div className="flex items-center gap-2">
+                  <FaSignOutAlt className="text-lg" /> <span>Sign Out</span>
+                </div>
               </button>
             </div>
           )}

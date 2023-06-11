@@ -1,4 +1,8 @@
+import { useState } from "react";
+
 const ClassCard = ({ singleClass }) => {
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+
   const {
     class_image,
     class_name,
@@ -8,11 +12,19 @@ const ClassCard = ({ singleClass }) => {
     price,
   } = singleClass;
 
+  console.log(singleClass);
+
   const selectDisabled = available_seats === 0;
 
   const buttonClasses = `btn btn-ghost border-slate-700 border-b-4 ${
-    selectDisabled ? " cursor-not-allowed" : ""
+    selectDisabled || buttonDisabled ? " cursor-not-allowed" : ""
   }`;
+
+  const handleSelectClass = ({ singleClass }) => {
+    console.log(singleClass);
+
+    setButtonDisabled(true);
+  };
 
   return (
     <div
@@ -34,7 +46,11 @@ const ClassCard = ({ singleClass }) => {
           <p className="text-lg">Course Fee: ${price}</p>
         </div>
         <div className="card-actions items-end justify-end h-full">
-          <button disabled={selectDisabled} className={buttonClasses}>
+          <button
+            onClick={() => handleSelectClass(singleClass)}
+            disabled={selectDisabled || buttonDisabled}
+            className={buttonClasses}
+          >
             Select
           </button>
         </div>
