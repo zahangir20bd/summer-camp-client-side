@@ -2,14 +2,16 @@ import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
-import useMySelectedClasses from "../../Hooks/useMySelectedClasses";
+// import useMySelectedClasses from "../../Hooks/useMySelectedClasses";
 
 const ClassCard = ({ singleClass }) => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const { user } = useAuth();
+
   const navigate = useNavigate();
   const location = useLocation();
-  const [, refetch] = useMySelectedClasses();
+  // const [, refetch] = useMySelectedClasses();
+  const token = localStorage.getItem("access-token");
 
   const {
     _id,
@@ -30,7 +32,7 @@ const ClassCard = ({ singleClass }) => {
   }`;
 
   const handleSelectClass = () => {
-    if (user && user.email) {
+    if (user && user?.email) {
       const selectClass = {
         class_id: _id,
         class_image,
@@ -51,7 +53,7 @@ const ClassCard = ({ singleClass }) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
-            refetch();
+            // refetch();
             Swal.fire({
               position: "top-end",
               icon: "success",
@@ -81,7 +83,11 @@ const ClassCard = ({ singleClass }) => {
   // console.log("User From useAuth:", user);
 
   if (user && user?.email) {
-    fetch(`http://localhost:5000/selectclasses?email=${user?.email}`)
+    fetch(`http://localhost:5000/selectclasses?email=${user?.email}`, {
+      headers: {
+        authorization: `bearer ${token}`,
+      },
+    })
       .then((res) => res.json())
       .then((mySelectClasses) => {
         // console.log(mySelectClasses);

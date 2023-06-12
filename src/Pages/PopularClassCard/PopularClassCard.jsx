@@ -2,7 +2,7 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import useClasses from "../../Hooks/useClasses";
 import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
-import useMySelectedClasses from "../../Hooks/useMySelectedClasses";
+// import useMySelectedClasses from "../../Hooks/useMySelectedClasses";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../components/SectionTitle";
@@ -14,8 +14,8 @@ const PopularClassCard = () => {
   const navigate = useNavigate();
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const { user } = useAuth();
-  const [, popularClasses] = useClasses();
-  const [, refetch] = useMySelectedClasses();
+  const [, popularClasses, refetch] = useClasses();
+  // const [, refetch] = useMySelectedClasses();
   const { id } = useParams();
 
   // filter expected popular class

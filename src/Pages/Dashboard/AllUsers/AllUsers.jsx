@@ -119,7 +119,7 @@ const AllUsers = () => {
                 <th>Name</th>
                 <th>Email</th>
                 <th>Role</th>
-                <th className="text-center">Make</th>
+                <th className="text-center">Make As</th>
                 <th className="text-center">Action</th>
               </tr>
             </thead>
