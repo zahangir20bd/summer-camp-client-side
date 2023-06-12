@@ -4,12 +4,16 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { FaOpencart, FaSignOutAlt, FaUser, FaUserAlt } from "react-icons/fa";
 import useMySelectedClasses from "../../Hooks/useMySelectedClasses";
+import useAdmin from "../../Hooks/useAdmin";
+import useInstructor from "../../Hooks/useInstructor";
 
 const Navbar = () => {
   const [isProfileVisible, setProfileVisible] = useState(false);
   const [isTransparent, setTransparent] = useState(true);
   const { user, signingOut } = useContext(AuthContext);
   const navigate = useNavigate();
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
 
   const [mySelectClasses] = useMySelectedClasses();
 
@@ -137,19 +141,23 @@ const Navbar = () => {
                   </div>
                 </NavLink>
               </button>
-              <button className="px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left block">
-                <NavLink to="/dashboard/selectclasses">
-                  <div className="flex items-center gap-2">
-                    <FaOpencart className="text-lg" />
-                    <div>
-                      Select Classes{" "}
-                      <span className="badge badge-neutral">
-                        +{mySelectClasses?.length || 0}
-                      </span>
+
+              {!isInstructor && !isAdmin && (
+                <button className="px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left block">
+                  <NavLink to="/dashboard/selectclasses">
+                    <div className="flex items-center gap-2">
+                      <FaOpencart className="text-lg" />
+                      <div>
+                        Select Classes{" "}
+                        <span className="badge badge-neutral">
+                          +{mySelectClasses?.length || 0}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </NavLink>
-              </button>
+                  </NavLink>
+                </button>
+              )}
+
               <button
                 onClick={handleSignOut}
                 className="block px-4 py-2 text-gray-800 hover:bg-gray-200 w-full text-left"

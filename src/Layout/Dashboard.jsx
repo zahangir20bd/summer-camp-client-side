@@ -10,13 +10,17 @@ import {
   FaUsers,
 } from "react-icons/fa";
 import useMySelectedClasses from "../Hooks/useMySelectedClasses";
+import useAdmin from "../Hooks/useAdmin";
+import useInstructor from "../Hooks/useInstructor";
 
 const Dashboard = () => {
   const [mySelectClasses] = useMySelectedClasses();
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
 
   // TODO: Load Data from the server to have dynamic isAdmin based on Data
-  const isAdmin = true;
-  const isInstructor = false;
+  // const isAdmin = true;
+  // const isInstructor = false;
 
   return (
     <div className="drawer lg:drawer-open">
