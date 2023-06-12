@@ -3,50 +3,66 @@ import SectionTitle from "../../../components/SectionTitle";
 import { FaCheck, FaComment, FaTimes } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const ManageClasses = () => {
+  const [axiosSecure] = useAxiosSecure();
+  const [isOpen, setIsOpen] = useState(false);
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
-    const res = await fetch("http://localhost:5000/classes");
-    return res.json();
+    const res = await axiosSecure.get("/classes");
+    return res.data;
   });
+
+  const { register, handleSubmit, reset } = useForm();
 
   // Class Approved handler
   const handleApproved = (id) => {
-    fetch(`http://localhost:5000/classes/approved/${id}`, {
-      method: "PATCH",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount) {
-          refetch();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Class Approved Successful",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
+    axiosSecure.patch(`/classes/approved/${id}`).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Class Approved Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   };
 
+  // Class Deny Handler
   const handleDeny = (id) => {
-    fetch(`http://localhost:5000/classes/deny/${id}`, {
-      method: "PATCH",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount) {
-          refetch();
-          Swal.fire({
-            position: "top-end",
-            icon: "warning",
-            title: "Class has been denied",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
+    axiosSecure.patch(`/classes/deny/${id}`).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "warning",
+          title: "Class has been denied",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+  };
+
+  const handleOpenModal = () => {
+    setIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsOpen(false);
+  };
+
+  const handleSendFeedback = (data) => {
+    const feedback = { feedback: data.feedback };
+    // axiosSecure.patch(`/classes/feedback/`)
+    console.log(feedback);
+    reset();
+    handleCloseModal();
   };
 
   return (
@@ -114,7 +130,10 @@ const ManageClasses = () => {
                     >
                       <FaTimes />
                     </button>
-                    <button className="btn btn-neutral btn-circle btn-sm text-xl">
+                    <button
+                      onClick={handleOpenModal}
+                      className="btn btn-neutral btn-circle btn-sm text-xl"
+                    >
                       <FaComment />
                     </button>
                   </th>
@@ -124,6 +143,47 @@ const ManageClasses = () => {
           </table>
         </div>
       </div>
+      {/* Modal */}
+      {isOpen && (
+        <div className="fixed z-10 inset-0 overflow-y-auto">
+          <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div className="fixed inset-0 transition-opacity">
+              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+            </div>
+            <span className="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
+            &#8203;
+            <form
+              onSubmit={handleSubmit(handleSendFeedback)}
+              className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full"
+            >
+              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div className="sm:flex sm:items-start">
+                  <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                    <h3 className="text-lg leading-6 font-medium text-gray-900">
+                      Feedback
+                    </h3>
+                    <div className="mt-2 w-full">
+                      <textarea
+                        {...register("feedback", { required: true })}
+                        className="resize-none border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500 block w-full h-32 p-2"
+                        placeholder="Enter your feedback"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-gray-50 gap-1 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button type="submit" className="btn btn-neutral">
+                  Send
+                </button>
+                <button className="btn btn-error" onClick={handleCloseModal}>
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

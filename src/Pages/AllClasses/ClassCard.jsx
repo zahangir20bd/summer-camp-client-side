@@ -2,11 +2,15 @@ import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
+import useAdmin from "../../Hooks/useAdmin";
+import useInstructor from "../../Hooks/useInstructor";
 // import useMySelectedClasses from "../../Hooks/useMySelectedClasses";
 
 const ClassCard = ({ singleClass }) => {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const { user } = useAuth();
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,7 +29,7 @@ const ClassCard = ({ singleClass }) => {
 
   // console.log(singleClass);
 
-  const selectDisabled = available_seats === 0;
+  const selectDisabled = available_seats === 0 || isAdmin || isInstructor;
 
   const buttonClasses = `btn btn-ghost border-slate-700 border-b-4 ${
     selectDisabled || buttonDisabled ? " cursor-not-allowed" : ""

@@ -21,7 +21,7 @@ const AddClass = () => {
       price: parseFloat(data.price),
       status: "Pending",
     };
-    console.log(newClass);
+    // console.log(newClass);
     axiosSecure.post("/classes", newClass).then((res) => {
       console.log("after Posting new Class", res.data);
       if (res.data.insertedId) {
