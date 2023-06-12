@@ -41,6 +41,11 @@ const Dashboard = () => {
           {isAdmin ? (
             <>
               <li>
+                <NavLink to="/dashboard/adminhome">
+                  <FaHome /> Admin Home
+                </NavLink>
+              </li>
+              <li>
                 <NavLink to="/dashboard/users">
                   <FaUsers /> Manage Users
                 </NavLink>
@@ -54,7 +59,12 @@ const Dashboard = () => {
           ) : isInstructor ? (
             <>
               <li>
-                <NavLink to="">
+                <NavLink to="/dashboard/instructorhome">
+                  <FaHome /> Instructor Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/addclass">
                   <FaBookOpen /> Add A Class
                 </NavLink>
               </li>
@@ -66,6 +76,11 @@ const Dashboard = () => {
             </>
           ) : (
             <>
+              <li>
+                <NavLink to="">
+                  <FaHome /> Student Home
+                </NavLink>
+              </li>
               <li>
                 <NavLink to="/dashboard/selectclasses">
                   <div className="flex items-center gap-2">

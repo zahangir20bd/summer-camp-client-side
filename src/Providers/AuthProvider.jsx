@@ -70,12 +70,11 @@ const AuthProvider = ({ children }) => {
           .then((data) => {
             // console.log("Data from Axios", data.data.token);
             localStorage.setItem("access-token", data.data.token);
+            setLoading(false);
           });
       } else {
         localStorage.removeItem("access-token");
       }
-
-      setLoading(false);
     });
   }, []);
 
