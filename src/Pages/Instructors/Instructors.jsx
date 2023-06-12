@@ -5,10 +5,18 @@ import { FaLink } from "react-icons/fa";
 import "./Instructors.css";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
-import useUsers from "../../Hooks/useUsers";
+import { useQuery } from "@tanstack/react-query";
+// import useUsers from "../../Hooks/useUsers";
 
 const Instructors = () => {
-  const [, , instructors] = useUsers();
+  // const [, , instructors] = useUsers();
+  const { data: instructors = [] } = useQuery({
+    queryKey: ["instructors"],
+    queryFn: async () => {
+      const response = await fetch(`http://localhost:5000/instructors`);
+      return response.json();
+    },
+  });
 
   return (
     <section className="pt-1 mb-10">

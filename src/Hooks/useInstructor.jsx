@@ -12,7 +12,7 @@ const useInstructor = () => {
       const response = await axiosSecure.get(
         `/users/instructor/${user?.email}`
       );
-      console.log("isInstructor response", response);
+      // console.log("isInstructor response", response);
       return response.data.instructor;
     },
     enabled: !!user?.email && !loading,
