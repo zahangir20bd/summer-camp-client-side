@@ -19,62 +19,51 @@ const AllUsers = () => {
 
   //   Make Admin Button Handler
   const handleMakeAdmin = (id) => {
-    fetch(`http://localhost:5000/users/admin/${id}`, {
-      method: "PATCH",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount) {
-          refetch();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "User Update as Admin Successful",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
+    axiosSecure.patch(`/users/admin/${id}`).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "User Update as Admin Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   };
 
   //   Update User as Instructor Handler
   const handleMakeInstructor = (id) => {
-    fetch(`http://localhost:5000/users/instructor/${id}`, {
-      method: "PATCH",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount) {
-          refetch();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "User Update as Instructor Successful",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
+    axiosSecure.patch(`/users/instructor/${id}`).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "User Update as Instructor Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   };
 
   //   Update User as Student Handler
   const handleMakeStudent = (id) => {
-    fetch(`http://localhost:5000/users/student/${id}`, {
-      method: "PATCH",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount) {
-          refetch();
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "User Update as Student Successful",
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      });
+    axiosSecure.patch(`/users/student/${id}`).then((res) => {
+      // console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "User Update as Student Successful",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
   };
 
   const handleDeleteUser = (id) => {
@@ -88,16 +77,12 @@ const AllUsers = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/${id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.deletedCount > 0) {
-              refetch();
-              Swal.fire("Deleted!", "User has been deleted.", "success");
-            }
-          });
+        axiosSecure.delete(`/users/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire("Deleted!", "User has been deleted.", "success");
+          }
+        });
       }
     });
   };
