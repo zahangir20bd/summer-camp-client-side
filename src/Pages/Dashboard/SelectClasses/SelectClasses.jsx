@@ -4,9 +4,11 @@ import useMySelectedClasses from "../../../Hooks/useMySelectedClasses";
 import { FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 const SelectClasses = () => {
   const [mySelectClasses, refetch] = useMySelectedClasses();
+  const [axiosSecure] = useAxiosSecure();
   const total = mySelectClasses
     .reduce((sum, selectClass) => selectClass.price + sum, 0)
     .toFixed(2);
@@ -22,25 +24,22 @@ const SelectClasses = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/selectclasses/${selectClass._id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.deletedCount > 0) {
-              refetch();
-              Swal.fire(
-                "Deleted!",
-                "Class deleted from Selected Class",
-                "success"
-              );
-            }
-          });
+        axiosSecure.delete(`/selectclasses/${selectClass._id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire(
+              "Deleted!",
+              "Class deleted from Selected Class",
+              "success"
+            );
+          }
+        });
       }
     });
   };
+
   return (
-    <section className="w-full mb-10">
+    <section className="w-full -mt-20 mb-10">
       <Helmet>
         <title>Selected Classes | Focus Academy</title>
       </Helmet>
