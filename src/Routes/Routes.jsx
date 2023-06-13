@@ -19,7 +19,7 @@ import MyClasses from "../Pages/Dashboard/MyClasses/MyClasses";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import StudentHome from "../Pages/Dashboard/StudentHome/StudentHome";
 import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
-import InstructorHome from "../Pages/AllClasses/InstructorHome/InstructorHome";
+import InstructorHome from "../Pages/Dashboard/InstructorHome/InstructorHome";
 
 export const router = createBrowserRouter([
   {

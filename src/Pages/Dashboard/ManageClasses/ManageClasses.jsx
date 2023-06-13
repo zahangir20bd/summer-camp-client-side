@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 const ManageClasses = () => {
   const [axiosSecure] = useAxiosSecure();
   const [isOpen, setIsOpen] = useState(false);
+  const [classId, setClassId] = useState(null);
   const { data: classes = [], refetch } = useQuery(["classes"], async () => {
     const res = await axiosSecure.get("/classes");
     return res.data;
@@ -49,8 +50,9 @@ const ManageClasses = () => {
     });
   };
 
-  const handleOpenModal = () => {
+  const handleOpenModal = (id) => {
     setIsOpen(true);
+    setClassId(id);
   };
 
   const handleCloseModal = () => {
@@ -59,10 +61,19 @@ const ManageClasses = () => {
 
   const handleSendFeedback = (data) => {
     const feedback = { feedback: data.feedback };
-    // axiosSecure.patch(`/classes/feedback/`)
-    console.log(feedback);
-    reset();
-    handleCloseModal();
+    axiosSecure.patch(`/classes/feedback/${classId}`, feedback).then((res) => {
+      if (res.data.modifiedCount > 0) {
+        reset();
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Feedback send Successfully.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        handleCloseModal();
+      }
+    });
   };
 
   return (
@@ -131,7 +142,8 @@ const ManageClasses = () => {
                       <FaTimes />
                     </button>
                     <button
-                      onClick={handleOpenModal}
+                      //
+                      onClick={() => handleOpenModal(item._id)}
                       className="btn btn-neutral btn-circle btn-sm text-xl"
                     >
                       <FaComment />

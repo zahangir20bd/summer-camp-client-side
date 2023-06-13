@@ -29,7 +29,7 @@ const StudentHome = () => {
               </div>
             </div>
             <div className="flex items-center gap-2 my-5">
-              <h2 className="text-2xl">My Selected Classes</h2>
+              <h2 className="text-2xl">My Enrolled Classes</h2>
               <div className="w-28 h-20 bg-cyan-200 flex items-center justify-center rounded-lg">
                 <span className="text-4xl font-bold">0</span>
               </div>
