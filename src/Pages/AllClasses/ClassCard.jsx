@@ -47,7 +47,7 @@ const ClassCard = ({ singleClass }) => {
         price,
         user_email: user.email,
       };
-      fetch("http://localhost:5000/selectclasses", {
+      fetch("https://focus-academy-server.vercel.app/selectclasses", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -87,11 +87,14 @@ const ClassCard = ({ singleClass }) => {
   // console.log("User From useAuth:", user);
 
   if (user && user?.email) {
-    fetch(`http://localhost:5000/selectclasses?email=${user?.email}`, {
-      headers: {
-        authorization: `bearer ${token}`,
-      },
-    })
+    fetch(
+      `https://focus-academy-server.vercel.app/selectclasses?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `bearer ${token}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((mySelectClasses) => {
         // console.log(mySelectClasses);

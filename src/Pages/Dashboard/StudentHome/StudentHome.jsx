@@ -10,7 +10,7 @@ const StudentHome = () => {
   return (
     <div className="w-full mb-10 -mt-20">
       <Helmet>Student Home | Focus Academy</Helmet>
-      <SectionTitle heading="MY Dashboard" />
+      <SectionTitle heading="My Dashboard" />
       <div className="mx-10">
         <h2 className="text-3xl font-bold mt-3 mb-5 font-serif">
           Hi {user?.displayName}, Welcome Back

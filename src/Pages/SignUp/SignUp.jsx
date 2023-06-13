@@ -47,7 +47,7 @@ const SignUp = () => {
             phone_number: data.phone_number,
             address: data.address,
           };
-          fetch("http://localhost:5000/users", {
+          fetch("https://focus-academy-server.vercel.app/users", {
             method: "POST",
             headers: {
               "content-type": "application/json",

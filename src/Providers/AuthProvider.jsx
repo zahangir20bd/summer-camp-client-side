@@ -66,7 +66,7 @@ const AuthProvider = ({ children }) => {
       // get and set token
       if (currentUser) {
         axios
-          .post("http://localhost:5000/jwt", {
+          .post("https://focus-academy-server.vercel.app/jwt", {
             email: currentUser.email,
           })
           .then((data) => {

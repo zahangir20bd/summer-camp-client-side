@@ -4,7 +4,9 @@ const useClasses = () => {
   const { refetch, data: classes = [] } = useQuery({
     queryKey: ["classes"],
     queryFn: async () => {
-      const res = await fetch(`http://localhost:5000/classes`);
+      const res = await fetch(
+        `https://focus-academy-server.vercel.app/classes`
+      );
       return res.json();
     },
   });

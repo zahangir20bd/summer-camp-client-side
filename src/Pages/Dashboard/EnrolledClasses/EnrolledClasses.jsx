@@ -1,8 +1,8 @@
 const EnrolledClasses = () => {
   return (
-    <div>
+    <section>
       <h2>My All Enrolled Classes</h2>
-    </div>
+    </section>
   );
 };
 

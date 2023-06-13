@@ -9,7 +9,7 @@
 //   const navigate = useNavigate();
 
 //   const axiosSecure = axios.create({
-//     baseURL: "http://localhost:5000",
+//     baseURL: "https://focus-academy-server.vercel.app",
 //   });
 
 //   useEffect(() => {
@@ -49,7 +49,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
 const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://focus-academy-server.vercel.app",
 });
 
 const useAxiosSecure = () => {
