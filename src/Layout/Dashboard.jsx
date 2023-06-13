@@ -77,7 +77,7 @@ const Dashboard = () => {
           ) : (
             <>
               <li>
-                <NavLink to="">
+                <NavLink to="/dashboard/studenthome">
                   <FaHome /> Student Home
                 </NavLink>
               </li>

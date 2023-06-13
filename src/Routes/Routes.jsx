@@ -17,6 +17,9 @@ import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
 import MyClasses from "../Pages/Dashboard/MyClasses/MyClasses";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import StudentHome from "../Pages/Dashboard/StudentHome/StudentHome";
+import AdminHome from "../Pages/Dashboard/AdminHome/AdminHome";
+import InstructorHome from "../Pages/AllClasses/InstructorHome/InstructorHome";
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +60,11 @@ export const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      // Student Routes
+      {
+        path: "studenthome",
+        element: <StudentHome></StudentHome>,
+      },
       {
         path: "selectclasses",
         element: <SelectClasses></SelectClasses>,
@@ -68,6 +76,15 @@ export const router = createBrowserRouter([
       {
         path: "payment",
         element: <Payment></Payment>,
+      },
+      // Admin Routes
+      {
+        path: "adminhome",
+        element: (
+          <AdminRoute>
+            <AdminHome></AdminHome>
+          </AdminRoute>
+        ),
       },
       {
         path: "users",
@@ -83,6 +100,15 @@ export const router = createBrowserRouter([
           <AdminRoute>
             <ManageClasses></ManageClasses>
           </AdminRoute>
+        ),
+      },
+      // Instructor Routes
+      {
+        path: "instructorhome",
+        element: (
+          <InstructorRoute>
+            <InstructorHome></InstructorHome>
+          </InstructorRoute>
         ),
       },
       {
