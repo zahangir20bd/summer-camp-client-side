@@ -52,7 +52,15 @@ const SelectClasses = () => {
           <div className="flex items-center gap-2 mr-6">
             <h2 className="text-2xl font-bold">Total: $ {total}</h2>
             <Link to="/dashboard/payment">
-              <button className="btn btn-neutral btn-sm">Pay</button>
+              <button
+                disabled={mySelectClasses.length === 0}
+                className={`btn btn-neutral btn-sm ${
+                  mySelectClasses.length === 0 &&
+                  "cursor-not-allowed pointer-events-none"
+                }`}
+              >
+                Pay
+              </button>
             </Link>
           </div>
         </div>
@@ -108,7 +116,15 @@ const SelectClasses = () => {
                   <th className="text-end">$ {total}</th>
                   <th>
                     <Link to="/dashboard/payment">
-                      <button className="btn btn-neutral btn-sm">Pay</button>
+                      <button
+                        disabled={mySelectClasses.length === 0}
+                        className={`btn btn-neutral btn-sm ${
+                          mySelectClasses.length === 0 &&
+                          "cursor-not-allowed pointer-events-none"
+                        }`}
+                      >
+                        Pay
+                      </button>
                     </Link>
                   </th>
                 </tr>
