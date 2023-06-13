@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import useClasses from "../../Hooks/useClasses";
 import { useState } from "react";
 import useAuth from "../../Hooks/useAuth";
@@ -145,9 +145,6 @@ const PopularClassCard = () => {
             <p className="text-lg">Course Fee: ${popularClass?.price}</p>
           </div>
           <div className="card-actions items-end justify-end h-full">
-            <button disabled={selectDisabled} className="btn btn-neutral">
-              Pay
-            </button>
             <button
               onClick={handleSelectClass}
               disabled={selectDisabled || buttonDisabled}

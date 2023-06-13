@@ -45,9 +45,17 @@ const SelectClasses = () => {
       </Helmet>
       <SectionTitle heading="My Selected Classes"></SectionTitle>
       <div className="px-10">
-        <h2 className="text-3xl font-bold">
-          My Total Selected Classes: {mySelectClasses.length}{" "}
-        </h2>
+        <div className="flex items-center justify-between">
+          <h2 className="text-3xl font-bold">
+            My Total Selected Classes: {mySelectClasses.length}{" "}
+          </h2>
+          <div className="flex items-center gap-2 mr-6">
+            <h2 className="text-2xl font-bold">Total: $ {total}</h2>
+            <Link to="/dashboard/payment">
+              <button className="btn btn-neutral btn-sm">Pay</button>
+            </Link>
+          </div>
+        </div>
         <div>
           <div className="overflow-x-auto">
             <table className="table">
@@ -99,7 +107,7 @@ const SelectClasses = () => {
                   <th className="text-end">Total: </th>
                   <th className="text-end">$ {total}</th>
                   <th>
-                    <Link>
+                    <Link to="/dashboard/payment">
                       <button className="btn btn-neutral btn-sm">Pay</button>
                     </Link>
                   </th>

@@ -46,12 +46,12 @@ const MyClasses = () => {
                 <td>{item.class_name}</td>
                 <td>{item.status}</td>
                 <td className="text-center">
-                  {item.status === "Deny"
+                  {item.status !== "Approved"
                     ? 0
                     : item.total_seats - item.available_seats}
                 </td>
                 <td className="text-center">
-                  {item.status === "Deny" ? 0 : item.available_seats}
+                  {item.status !== "Approved" ? 0 : item.available_seats}
                 </td>
                 <td>${item.price.toFixed(2)}</td>
                 <td className="text-center">
