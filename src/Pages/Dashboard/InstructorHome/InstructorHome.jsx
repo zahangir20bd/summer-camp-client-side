@@ -13,7 +13,7 @@ const InstructorHome = () => {
   });
   const approvedClass = myclasses.filter((item) => item.status === "Approved");
   const pendingClass = myclasses.filter((item) => item.status === "Pending");
-  const deniedClass = myclasses.filter((item) => item.status === "Pending");
+  const deniedClass = myclasses.filter((item) => item.status === "Deny");
 
   return (
     <section className="w-full mb-10 -mt-20">
@@ -29,8 +29,8 @@ const InstructorHome = () => {
           <div className="border-2 text-center flex items-center justify-center bg-gray-100">
             <img className="w-72 p-10" src={user?.photoURL} alt="" />
           </div>
-          <div>
-            <div className="flex items-center justify-center gap-2">
+          <div className="mx-5 grid grid-cols-1 gap-3">
+            <div className="flex items-center justify-between">
               <h2 className="text-2xl font-serif font-bold ">
                 My Total Classes:{" "}
               </h2>
@@ -38,14 +38,32 @@ const InstructorHome = () => {
                 {myclasses.length}
               </span>
             </div>
-            <div>
-              <h2>My Approved Classes: {approvedClass.length}</h2>
+
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-serif font-bold ">
+                Approved Classes:
+              </h2>
+              <span className="w-32 h-24 bg-gray-200 flex items-center justify-center text-4xl font-bold  rounded-lg ">
+                {approvedClass.length}
+              </span>
             </div>
-            <div>
-              <h2>My Pending Classes: {pendingClass.length}</h2>
+
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-serif font-bold ">
+                Pending Classes:
+              </h2>
+              <span className="w-32 h-24 bg-gray-200 flex items-center justify-center text-4xl font-bold  rounded-lg ">
+                {pendingClass.length}
+              </span>
             </div>
-            <div>
-              <h2>My Denied Classes: {deniedClass.length}</h2>
+
+            <div className="flex items-center justify-between">
+              <h2 className="text-2xl font-serif font-bold ">
+                Denied Classes:
+              </h2>
+              <span className="w-32 h-24 bg-gray-200 flex items-center justify-center text-4xl font-bold  rounded-lg ">
+                {deniedClass.length}
+              </span>
             </div>
           </div>
         </div>
