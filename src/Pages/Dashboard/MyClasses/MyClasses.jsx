@@ -33,7 +33,7 @@ const MyClasses = () => {
               <th className="text-center">N. of Student</th>
               <th className="text-center">A. Seats</th>
               <th>Price</th>
-              <th>Feedback</th>
+              <th className="text-center">Feedback</th>
             </tr>
           </thead>
           {/* Table Body */}
@@ -55,9 +55,7 @@ const MyClasses = () => {
                 </td>
                 <td>${item.price.toFixed(2)}</td>
                 <td className="text-center">
-                  {item.status === "Approved" || item.status === "Pending"
-                    ? ""
-                    : item.feedback}
+                  {item.status === "Deny" && item.feedback?.feedback}
                 </td>
               </tr>
             ))}
