@@ -19,9 +19,12 @@
 <li style="font-family: &quot;Courier Prime&quot;, monospace, Bangla266, sans-serif;">NodeJS</li>
 </ul><h2>Project Status</h2>
 <hr><p>This project is partially completed. In future we will add a payment system for individual classes and need to update some features to reduce the available seats after successful payments.</p><h2>Acknowledgement</h2>
+
 <hr><ul>
 <li style="font-family: &quot;Courier Prime&quot;, monospace, Bangla266, sans-serif;">Live Web site Link: https://focus-academy-92cbf.web.app/</li>
 </ul><ul>
 <li style="font-family: &quot;Courier Prime&quot;, monospace, Bangla266, sans-serif;">Many Many Thanks to Programming Hero Teams to provide a wonderful course named Complete Web Development. It was a nice journey. Specially Thanks to Jhankar Mahbub Vai. Thanks a Lot.</li>
 </ul><h2>Contact</h2>
 <hr><p><span style="margin-right: 30px; font-family: &quot;Courier Prime&quot;, monospace, Bangla266, sans-serif;"></span><a href="https://www.linkedin.com/in/zahangir20bds/" style="font-family: &quot;Courier Prime&quot;, monospace, Bangla266, sans-serif;"><img target="_blank" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" style="width: 10%; font-family: &quot;Courier Prime&quot;, monospace, Bangla266, sans-serif;"></a><span style="margin-right: 30px;"></span><a href="https://github.com/zahangir20bd"><img target="_blank" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" style="width: 10%; font-family: &quot;Courier Prime&quot;, monospace, Bangla266, sans-serif;"></a></p>
+<p>Admin User Email: rafe.z@mail.com Admin Password: Rafe@1234
+Instructor Email: rana.b@mail.com Instructor Password: Rana@1234</p>
